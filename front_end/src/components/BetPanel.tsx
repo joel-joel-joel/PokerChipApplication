@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Box, Flex } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import * as Slider from "@radix-ui/react-slider";
 import "./BetPanel.css";
+
+
 
 type BetPanelProps = {
   yourBet: number;
@@ -9,8 +11,9 @@ type BetPanelProps = {
 };
 
 export default function BetPanel({ yourBet, currentBet }: BetPanelProps) {
-  // If you want the slider to be live, use state (optional)
+  
   const [bet, setBet] = React.useState<number>(yourBet);
+  const [pot, setPot] = React.useState<number>(0);
 
   return (
     <Box className="bet-panel">
@@ -39,7 +42,9 @@ export default function BetPanel({ yourBet, currentBet }: BetPanelProps) {
       </Slider.Root>
     </div>
 
+    <p className="pot-label">TOTAL POT: ${pot}</p>
   </Box>
 </Box>
+
   );
 }

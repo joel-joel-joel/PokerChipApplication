@@ -1,0 +1,15 @@
+/* All Buttons CSS */
+.rt-Button.bet-button {
+    font-size: 1.25rem; 
+    padding: 1rem 2rem; 
+    font-weight: 600;
+}
+  
+/* Raise Button CSS*/
+.rt-Button.raise-button {
+    background-color: #177121 !important;
+}
+
+.rt-Button.fold-button {
+    background-color: #A52A2A !important;
+}
