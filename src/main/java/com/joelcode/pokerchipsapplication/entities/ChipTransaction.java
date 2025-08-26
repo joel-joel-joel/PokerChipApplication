@@ -84,28 +84,28 @@ public class ChipTransaction {
     public void setChipsAmount(int chipsAmount) {
         this.chipsAmount = chipsAmount;
     }
-}
 
-enum transactionType {
-    CALL {
-        @Override
-        public String describe(RoomPlayer from, RoomPlayer to, int amount) {
-            return from.getUser().getUsername() + " called with $" + amount;
-        }
-    },
-    RAISE {
-        @Override
-        public String describe(RoomPlayer from, RoomPlayer to, int amount) {
-            return from.getUser().getUsername() + " raised with $" + amount;
-        }
-    },
-    BUYIN {
-        @Override
-        public String describe(RoomPlayer from, RoomPlayer to, int amount) {
-            return to.getUser().getUsername() + " bought in with $" + amount;
-        }
-    };
+    public enum transactionType {
+        CALL {
+            @Override
+            public String describe(RoomPlayer from, RoomPlayer to, int amount) {
+                return from.getUser().getUsername() + " called with $" + amount;
+            }
+        },
+        RAISE {
+            @Override
+            public String describe(RoomPlayer from, RoomPlayer to, int amount) {
+                return from.getUser().getUsername() + " raised with $" + amount;
+            }
+        },
+        BUYIN {
+            @Override
+            public String describe(RoomPlayer from, RoomPlayer to, int amount) {
+                return to.getUser().getUsername() + " bought in with $" + amount;
+            }
+        };
 
-    public abstract String describe(RoomPlayer from, RoomPlayer to, int amount);
+        public abstract String describe(RoomPlayer from, RoomPlayer to, int amount);
+    }
 }
 

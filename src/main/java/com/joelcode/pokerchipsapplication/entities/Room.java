@@ -122,8 +122,9 @@ public class Room {
     public void setRoomPlayers(ArrayList<RoomPlayer> roomPlayers) {
         this.roomPlayers = roomPlayers;
     }
+
+    public enum roomStatus {
+        WAITING, ACTIVE, END
+    }
 }
 
-enum roomStatus {
-    WAITING, ACTIVE, END
-}
