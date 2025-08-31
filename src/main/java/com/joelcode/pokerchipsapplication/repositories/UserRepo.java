@@ -11,7 +11,7 @@ import java.util.UUID;
 import com.joelcode.pokerchipsapplication.entities.User;
 
 @Repository
-public interface UserRepo  extends JpaRepository<User, UUID> {
+public interface UserRepo extends JpaRepository<User, UUID> {
 
     Optional<User> findById(UUID id);
 
