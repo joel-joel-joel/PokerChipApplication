@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,7 +34,6 @@ public class UserService {
             throw new Exception("Email already exists");
         }
 
-
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
@@ -53,10 +51,9 @@ public class UserService {
         }
 
         return tokenProvider.generateToken(user);
-
-
     }
 
-
-
+    public User findById(UUID id) {
+        return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
 }

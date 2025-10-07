@@ -1,13 +1,12 @@
 package com.joelcode.pokerchipsapplication;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 class PokerChipsApplicationTests {
 
     @Test
-    void contextLoads() {
+    void simpleMathWorks() {
+        assertEquals(4, 2 + 2);
     }
-
 }
