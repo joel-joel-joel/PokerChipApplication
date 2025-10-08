@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -53,7 +55,73 @@ public class UserService {
         return tokenProvider.generateToken(user);
     }
 
+    // ==== USER LOOKUP METHODS ====
+
     public User findById(UUID id) {
         return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
+
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public List<User> getAllUsers(){
+        return userRepo.findAll();
+    }
+
+    // ==== USER SEARCH & ANALYTICS ====
+
+    public List<User> findbyUsernameContainingIgnoreCase(String usernameFragment){
+        return userRepo.findByUsernameContainingIgnoreCase(usernameFragment);
+    }
+
+    public List<User> findRecentUsers(LocalDateTime since){
+        return userRepo.findByCreatedAtAfter(since);
+    }
+
+    public List<User> findWithinDateRange(LocalDateTime start, LocalDateTime end){
+        return userRepo.findWithinDateRange(start, end);
+    }
+
+    public List<User> findAfterDate(LocalDateTime date){
+        return userRepo.findByCreatedAtAfter(date);
+    }
+
+
+    // ==== USER MANAGEMENT ====
+
+    public void updateUserEmail(UUID id, String newEmail){
+        User user = findById(id);
+
+        if (userRepo.existsByEmail(newEmail)){
+            throw (new RuntimeException("Email already exists"));
+        }
+
+        user.setEmail(newEmail);
+        userRepo.save(user);
+    }
+
+    public void updateUserPassword(UUID id, String newPassword){
+        User user = findById(id);
+        user.setPassword(newPassword);
+        userRepo.save(user);
+    }
+
+    public boolean isEmailAvailable(String email){
+        return !userRepo.existsByEmail(email);
+    }
+
+    public boolean isUsernameAvailable(String username){
+        return !userRepo.existsByUsername(username);
+    }
+
+    public void deleteUser(UUID id){
+        User user = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userRepo.deleteById(id);
+    }
+
 }
