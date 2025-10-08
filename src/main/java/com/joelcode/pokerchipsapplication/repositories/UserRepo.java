@@ -17,6 +17,10 @@ public interface UserRepo extends JpaRepository<User, UUID> {
 
     Optional<User> findByUsername(String username);
 
+    Optional<User> findByEmail(String email);
+
+    boolean existsByID(UUID id);
+
     boolean existsByUsername(String username);
 
     boolean existsByEmail(String email);
@@ -26,6 +30,8 @@ public interface UserRepo extends JpaRepository<User, UUID> {
     List<User> findByCreatedAtAfter(LocalDateTime createdAtAfter);
 
     List<User> findByUsernameContainingIgnoreCase(String usernameFragment);
+
+    List<User> findWithinDateRange(LocalDateTime start, LocalDateTime end);
 
 
 }

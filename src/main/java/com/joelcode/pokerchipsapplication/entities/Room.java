@@ -11,13 +11,14 @@ import java.util.UUID;
 @Table(name = "room")
 public class Room {
 
-    public Room(String roomName, User host, roomStatus status, int maxPlayers, int staringChips, ArrayList<RoomPlayer> roomPlayers) {
+    public Room(String roomName, User host, roomStatus status, int maxPlayers, int staringChips, ArrayList<RoomPlayer> roomPlayers, String code) {
         this.roomName = roomName;
         this.host = host;
         this.status = status;
         this.maxPlayers = maxPlayers;
         this.staringChips = staringChips;
         this.roomPlayers = roomPlayers;
+        this.code = code;
     }
 
     public Room() {
@@ -50,6 +51,9 @@ public class Room {
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
     private ArrayList<RoomPlayer> roomPlayers = new ArrayList<>();
+
+    @Column(name = "code", unique = true, length = 6, nullable = false)
+    private String code;
 
     public UUID getId() {
         return id;
@@ -121,6 +125,19 @@ public class Room {
 
     public void setRoomPlayers(ArrayList<RoomPlayer> roomPlayers) {
         this.roomPlayers = roomPlayers;
+    }
+
+    // Backwards-compatible getter (as currently referenced in DTO)
+    public String getcode() {
+        return this.code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public enum roomStatus {

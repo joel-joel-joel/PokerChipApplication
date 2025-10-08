@@ -11,12 +11,12 @@ import java.util.UUID;
 @Table(name = "room_player")
 public class RoomPlayer {
 
-    public RoomPlayer(User user, Room room, int chipBalance, int position, playerStatus playerStatus) {
+    public RoomPlayer(User user, Room room, int chipBalance, int position, PlayerStatus status) {
         this.user = user;
         this.room = room;
         this.chipBalance = chipBalance;
         this.position = position;
-        this.playerStatus = playerStatus;
+        this.status = status;
     }
 
     public RoomPlayer() {
@@ -39,7 +39,7 @@ public class RoomPlayer {
     private int position;
 
     @Enumerated(EnumType.STRING)
-    private playerStatus playerStatus;
+    private PlayerStatus status;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -84,12 +84,12 @@ public class RoomPlayer {
         this.position = position;
     }
 
-    public playerStatus getPlayerStatus() {
-        return playerStatus;
+    public PlayerStatus getPlayerStatus() {
+        return status;
     }
 
-    public void setPlayerStatus(playerStatus playerStatus) {
-        this.playerStatus = playerStatus;
+    public void setPlayerStatus(PlayerStatus status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -99,11 +99,19 @@ public class RoomPlayer {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-}
 
-enum playerStatus {
-    Active,
-    Inactive,
-    // other statuses
+    public PlayerStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
+    }
+
+    // Player status is now defined within RoomPlayer for cohesion
+    public enum PlayerStatus {
+        ACTIVE,
+        INACTIVE
+    }
 }
 
