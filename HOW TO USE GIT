@@ -1,0 +1,138 @@
+# Git/GitHub Workflow for Team Projects
+
+Here's the professional workflow from start to finish:
+
+## 1. **Starting Your Work Session**
+
+```bash
+# Make sure you're on the main branch
+git checkout main
+
+# Pull latest changes from remote
+git pull origin main
+```
+
+## 2. **Create a Feature Branch**
+
+Never work directly on `main`. Create a branch for your specific task:
+
+```bash
+# Create and switch to a new branch
+git checkout -b feature/your-feature-name
+
+# Or separate commands:
+git branch feature/your-feature-name
+git checkout feature/your-feature-name
+```
+
+Branch naming conventions:
+- `feature/add-login-page`
+- `bugfix/fix-navbar-alignment`
+- `refactor/update-api-calls`
+
+## 3. **Code and Commit Regularly**
+
+```bash
+# Check what files you've changed
+git status
+
+# Stage specific files
+git add filename.js anotherfile.css
+
+# Or stage all changes (use carefully)
+git add .
+
+# Commit with a descriptive message
+git commit -m "Add user authentication logic"
+```
+
+**Good commit messages:**
+- "Fix button alignment on mobile"
+- "Add error handling to API calls"
+- "Refactor database query functions"
+
+## 4. **Push Your Branch to GitHub**
+
+```bash
+# First time pushing this branch
+git push -u origin feature/your-feature-name
+
+# Subsequent pushes
+git push
+```
+
+## 5. **Keep Your Branch Updated**
+
+If working on a long feature, regularly sync with main:
+
+```bash
+# Switch to main and update
+git checkout main
+git pull origin main
+
+# Go back to your branch
+git checkout feature/your-feature-name
+
+# Merge main into your branch
+git merge main
+
+# Or use rebase (cleaner history, but more advanced)
+git rebase main
+```
+
+## 6. **Create a Pull Request (PR)**
+
+On GitHub's website:
+1. Go to your repository
+2. Click "Pull Requests" → "New Pull Request"
+3. Select your branch to merge into `main`
+4. Write a clear description of your changes
+5. Request reviewers from your team
+6. Link any related issues
+
+## 7. **After PR Approval**
+
+```bash
+# Switch back to main
+git checkout main
+
+# Pull the merged changes
+git pull origin main
+
+# Delete your local feature branch (it's merged now)
+git branch -d feature/your-feature-name
+
+# Delete remote branch (optional, often done via GitHub)
+git push origin --delete feature/your-feature-name
+```
+
+## Best Practices
+
+**DO:**
+- Commit often with meaningful messages
+- Pull from main before starting work
+- Keep branches focused on one feature/fix
+- Write descriptive PR descriptions
+- Review your own changes before creating a PR
+- Test your code before pushing
+
+**DON'T:**
+- Commit directly to `main`
+- Push broken/untested code
+- Use vague commit messages like "updates" or "fix"
+- Work on multiple unrelated features in one branch
+- Force push (`git push -f`) unless you really know what you're doing
+
+## Quick Reference Commands
+
+```bash
+git status              # Check current state
+git log --oneline       # View commit history
+git diff                # See unstaged changes
+git diff --staged       # See staged changes
+git stash               # Temporarily save changes
+git stash pop           # Restore stashed changes
+git branch -a           # List all branches
+```
+
+This workflow keeps your codebase clean, makes collaboration smooth, and helps prevent conflicts with your teammates!
