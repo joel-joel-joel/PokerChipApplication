@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class GameStatResponse {
+public class GameStateResponse {
     private UUID roomID;
     private String roomCode;
     private String roomName;
@@ -12,9 +12,9 @@ public class GameStatResponse {
     private String hostUsername;
     private List<PlayerResponse> players;
 
-    public GameStatResponse() {}
+    public GameStateResponse() {}
 
-    public GameStatResponse(UUID roomID, String roomCode, String roomName, String roomStatus, String hostUsername, List<PlayerResponse> players) {
+    public GameStateResponse(UUID roomID, String roomCode, String roomName, String roomStatus, String hostUsername, List<PlayerResponse> players) {
         this.roomID = roomID;
         this.roomCode = roomCode;
         this.roomName = roomName;

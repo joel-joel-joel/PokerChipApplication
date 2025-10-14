@@ -22,12 +22,12 @@ public interface RoomPlayerRepo extends JpaRepository<RoomPlayer, UUID> {
     List<RoomPlayer> findAllByRoom(Room room);
 
     List<RoomPlayer> findByUser(User user);
-
+    
     boolean existsByUserAndRoom(User user, Room room);
 
 
     // Get players by chip count (leaderboard)
-    @Query ("SELECT rp FROM RoomPlayer rp " + "WHERE rp.room.roomName = :roomname " + "ORDER BY rp.chipBalance DESC")
+    @Query("SELECT rp FROM RoomPlayer rp WHERE rp.room.code = :roomCode ORDER BY rp.chipBalance DESC")
     List<RoomPlayer> findPlayersInRoomOrderByChips(@Param("roomCode") String roomCode);
 
 
@@ -48,10 +48,8 @@ public interface RoomPlayerRepo extends JpaRepository<RoomPlayer, UUID> {
     Long getTotalChipsInRoom(@Param("roomId") UUID roomId);
 
     // Find top N players by chips in a room
-    @Query("SELECT rp FROM RoomPlayer rp " +
-            "WHERE rp.room.roomName = :roomName " +
-            "ORDER BY rp.chipBalance DESC")
-    List<RoomPlayer> findTopPlayersByChips(@Param("roomName") String roomName,
+    @Query("SELECT rp FROM RoomPlayer rp WHERE rp.room.code = :roomCode ORDER BY rp.chipBalance DESC")
+    List<RoomPlayer> findTopPlayersByChips(@Param("roomCode") String roomCode,
                                            org.springframework.data.domain.Pageable pageable);
 
     // ==== STATISTICS QUERIES ====
@@ -84,5 +82,10 @@ public interface RoomPlayerRepo extends JpaRepository<RoomPlayer, UUID> {
     @Query("UPDATE RoomPlayer rp SET rp.chipBalance = rp.chipBalance + :bonusChips " +
             "WHERE rp.room.id = :roomId")
     int addBonusChipsToAllPlayers(@Param("roomId") UUID roomId, @Param("bonusChips") Integer bonusChips);
+
 }
+
+    
+
+
 

@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,8 +22,10 @@ public interface RoomRepo extends JpaRepository<Room, UUID> {
     Optional<Room> findByCode(String code);
 
     List<Room> findByStatus(Room.roomStatus status);
+    Page<Room> findByStatus(Room.roomStatus status, Pageable pageable);
 
     List<Room> findByHost(User host);
+    Page<Room> findByHost(User host, Pageable pageable);
 
 
     // Find rooms that aren't full (have space for more players)

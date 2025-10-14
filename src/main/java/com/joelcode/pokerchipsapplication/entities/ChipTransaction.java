@@ -85,6 +85,13 @@ public class ChipTransaction {
         this.chipsAmount = chipsAmount;
     }
 
+    public void setDescription(String description) {
+        getDescription();
+    }
+
+    public void setTransactionType(transactionType type) {
+    }
+
     public enum transactionType {
         CALL {
             @Override
