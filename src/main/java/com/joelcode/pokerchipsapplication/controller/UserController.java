@@ -3,7 +3,7 @@ package com.joelcode.pokerchipsapplication.controller;
 import com.joelcode.pokerchipsapplication.entities.User;
 import com.joelcode.pokerchipsapplication.security.UserPrincipal;
 import com.joelcode.pokerchipsapplication.service.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
