@@ -1,4 +1,4 @@
-package com.joelcode.pokerchipsapplication.dto.response;
+package com.joelcode.pokerchipsapplication.exceptions;
 
 import java.time.LocalDateTime;
 

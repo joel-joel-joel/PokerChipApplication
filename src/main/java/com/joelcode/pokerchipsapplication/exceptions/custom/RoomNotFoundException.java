@@ -1,4 +1,4 @@
-package com.joelcode.pokerchipsapplication.service.exceptions;
+package com.joelcode.pokerchipsapplication.exceptions.custom;
 
 public class RoomNotFoundException extends RuntimeException {
     public RoomNotFoundException() { super(); }

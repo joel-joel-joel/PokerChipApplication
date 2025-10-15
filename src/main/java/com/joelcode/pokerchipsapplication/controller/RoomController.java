@@ -7,7 +7,7 @@ import com.joelcode.pokerchipsapplication.entities.Room;
 import com.joelcode.pokerchipsapplication.security.UserPrincipal;
 import com.joelcode.pokerchipsapplication.service.RoomService;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -56,7 +56,7 @@ public class RoomController {
     // Get available rooms - GET /api/rooms/available
     @GetMapping("/available")
     public ResponseEntity<List<RoomResponse>> getAvailableRooms() {
-        List<Room> rooms = roomService.getActiveRoomsWithMinPlayers();
+        List<Room> rooms = roomService.getActiveRoomsWithMinPlayers(2);
         List<RoomResponse> response = rooms.stream()
                 .map(RoomResponse::new)
                 .collect(Collectors.toList());
